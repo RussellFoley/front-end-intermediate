@@ -62,10 +62,22 @@
 	]
 
 	$(document).ready(function() {
+		var keepGoing = true;
+		var last; //stores previous quote index
 		$("#getQuote").on("click", function() {
-			var q = quotes[Math.floor(Math.random()*quotes.length)];
+			while (keepGoing){ //roll random numbers until it is different from last
+				var randomIndex = Math.floor(Math.random()*quotes.length);
+				if (randomIndex != last){
+					keepGoing = false;
+				}
+			}
+			keepGoing = true; //ready for next time
+			last = randomIndex;
+
+			var q = quotes[randomIndex];
 			var quote = q.quote;
 			var author = q.author;
+				
 			$("#quote").html(quote);
 			$("#author").html(author);
 		});
