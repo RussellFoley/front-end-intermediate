@@ -1,0 +1,93 @@
+<!DOCTYPE html> <!-- NEED TO ADD TWITTER BUTTON SOMEWHERE -->
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Random Quote Machine</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	var quotes = [
+		{
+			"quote":"Waste no more time arguing what a good man should be. Be One.",
+			"author":"Marcus Aurelius"
+		},
+		{
+			"quote":"We suffer more in imagination than in reality.",
+			"author":"Seneca"
+		},
+		{
+			"quote":"If it is not right, do not do it, if it is not true, do not say it.",
+			"author":"Marcus Aurelius"
+		},
+		{
+			"quote":"We all love ourselves more than other people, but care more about their opinion than our own.",
+			"author":"Marcus Aurelius"
+		},
+		{
+			"quote":"The best revenge is not to be like your enemy.",
+			"author":"Marcus Aurelius"
+		},
+		{
+			"quote":"What man actually needs is not a tensionless state but rather the striving and struggling for some goal worthy of him.",
+			"author":"Viktor E. Frankl"
+		},
+		{
+			"quote":"When we are no longer able to change a situation, we are challenged to change ourselves.",
+			"author":"Viktor E. Frankl"
+		},
+		{
+			"quote":"It is impossible for a man to learn what he thinks he already knows.",
+			"author":"Epictetus"
+		},
+		{
+			"quote":"You shouldn't give circumstances the power to rouse anger, for they don't care at all.",
+			"author":"Marcus Aurelius"
+		},
+		{
+			"quote":"Your mind will take the shape of what you frequently hold in thought, for the human spirit is colored by such impressions.",
+			"author":"Marcus Aurelius"
+		},
+		{
+			"quote":"The man who has anticipated the coming of troubles takes away their power when they arrive.",
+			"author":"Seneca"
+		},
+		{
+			"quote":"I begin to speak only when I'm certain what I'll say isn't better left unsaid.",
+			"author":"Cato"
+		},
+		{
+			"quote":"To live the good life: We have the potential for it. If we can learn to be indifferent to what makes no difference.",
+			"author":"Marcus Aurelius"
+		}
+	]
+
+	$(document).ready(function() {
+		$("#getQuote").on("click", function() {
+			var q = quotes[Math.floor(Math.random()*quotes.length)];
+			var quote = q.quote;
+			var author = q.author;
+			$("#quote").html(quote);
+			$("#author").html(author);
+		});
+	});	
+	
+</script>
+
+<body>
+	<h1>Random Quote Machine</h1>
+	<div>
+		<figure>
+			<blockquote id="quote"></blockquote>
+			<footer>
+				<cite id = "author"></cite>
+			</footer>
+		</figure>
+		<button id="getQuote">
+			Random Quote
+		</button>
+	</div>
+
+</body>
+
+
+</html>
