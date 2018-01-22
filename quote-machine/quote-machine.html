@@ -64,7 +64,7 @@
 	$(document).ready(function() {
 		var keepGoing = true;
 		var last; //stores previous quote index
-		$("#getQuote").on("click", function() {
+		function getQuoteFunction() {
 			while (keepGoing){ //roll random numbers until it is different from last
 				var randomIndex = Math.floor(Math.random()*quotes.length);
 				if (randomIndex != last){
@@ -81,7 +81,9 @@
 			$("#quote").html(quote);
 			$("#author").html(author);
 			$("#twitter-button").attr("href","https://twitter.com/intent/tweet?text=" + quote + " - " + author);
-		});
+		};
+		getQuoteFunction();
+		$("#getQuote").on("click", getQuoteFunction);
 		
 	});	
 	
