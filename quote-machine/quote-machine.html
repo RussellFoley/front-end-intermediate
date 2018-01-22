@@ -75,12 +75,14 @@
 			last = randomIndex;
 
 			var q = quotes[randomIndex];
-			var quote = q.quote;
+			var quote = '"' + q.quote + '"';
 			var author = q.author;
 				
 			$("#quote").html(quote);
 			$("#author").html(author);
+			$("#twitter-button").attr("href","https://twitter.com/intent/tweet?text=" + quote + " - " + author);
 		});
+		
 	});	
 	
 </script>
@@ -97,7 +99,8 @@
 		<button id="getQuote">
 			Random Quote
 		</button>
-	</div>
+		<a target ="_blank" id="twitter-button" class="twitter-share-button" href="#"> <!-- twitter button. there is a twitter widget script to use but I might do without it and design button myself.-->
+		Tweet</a> <!-- the class is for the twitter script (unused) -->
 
 </body>
 
