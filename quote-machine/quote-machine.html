@@ -80,7 +80,7 @@
 				
 			$("#quote").html(quote);
 			$("#author").html(author);
-			$("#twitter-button").attr("href","https://twitter.com/intent/tweet?text=" + quote + " - " + author);
+			$("#twitter-button").attr("href","https://twitter.com/intent/tweet?hashtags=stoicism&text=" + quote + " - " + author);
 		};
 		getQuoteFunction();
 		$("#getQuote").on("click", getQuoteFunction);
