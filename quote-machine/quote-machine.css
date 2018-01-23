@@ -1,0 +1,40 @@
+body {
+    font-family: "Times New Roman", Serif;
+
+}
+
+#box {
+  max-width: 30%;
+  min-width: 460px;
+  min-height: 204px;
+  margin: 50px auto;
+  height: 30%;
+  background-color: #FAEBD7;
+  padding: 1em;
+  border-radius: 10px;
+  border: 1px solid black;
+  position: relative;
+}
+
+h1{
+  margin: 1em auto;
+}
+
+#getQuote, #twitter-button {
+  width: 100%;
+  
+}
+
+blockquote {
+    border-left: none;
+}
+
+#author {
+	margin-top: 5px;
+}
+
+#button-row {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+}

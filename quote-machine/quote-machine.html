@@ -3,6 +3,9 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Random Quote Machine</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="quote-machine.css">.
+
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -90,20 +93,34 @@
 </script>
 
 <body>
-	<h1>Random Quote Machine</h1>
-	<div>
-		<figure>
-			<blockquote id="quote"></blockquote>
-			<footer>
-				<cite id = "author"></cite>
-			</footer>
-		</figure>
-		<button id="getQuote">
-			Random Quote
-		</button>
-		<a target ="_blank" id="twitter-button" class="twitter-share-button" href="#"> <!-- twitter button. there is a twitter widget script to use but I might do without it and design button myself.-->
-		Tweet</a> <!-- the class is for the twitter script (unused) -->
-
+	<div class="container-fluid">
+  
+		<h1 class="text-center">Stoic Quote Machine</h1>
+  
+		<div id="box">
+			<div class = "row">
+				<figure>
+					<blockquote class="text-center">
+						<div id="quote"></div>
+						<footer id = "author">hhh</footer>
+					</blockquote>
+				</figure>
+			</div>
+		
+			<div class = "row" id="button-row">
+				<div class="col-xs-6">
+					<a target ="_blank" id="twitter-button" class="btn btn-primary" href="#">
+					Tweet</a>
+				</div>
+				<div class="col-xs-6">
+					<button class="btn btn-primary" id="getQuote">
+						Random Quote
+					</button>
+				</div>
+			</div><!-- row for buttons -->
+			
+		</div><!-- box -->
+	</div><!-- container-fluid -->
 </body>
 
 
