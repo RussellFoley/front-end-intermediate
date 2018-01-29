@@ -22,6 +22,9 @@
 			$("#2").html(JSON.stringify(json));
 			console.log(json.name);
 			$("#place").html(json.name + ", " + json.sys.country);
+			$("#temperature").html(json.main.temp + "&#8451");
+			console.log(json.weather[0].icon);
+			$("#icon").html('<img src="' + json.weather[0].icon + '">');
 		});
   });
 }		
@@ -32,14 +35,14 @@
 	</script>
 </head>
 <body>
-<!-- for development -->
+<!-- for development
 <div id="1">
 
 </div>
 <div id="2">
 
 </div>
-<!-- /for development -->
+/for development -->
 <h1>Local Weather</h1>
 <div id="place"> <!-- takes name and country from sys -->
 
