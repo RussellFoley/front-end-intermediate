@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+	  $(document).ready(function() {
+		
+		if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    $("#1").html("latitude: " + position.coords.latitude + "<br>longitude: " + position.coords.longitude);
+  });
+}
+
+		$.getJSON("https://fcc-weather-api.glitch.me//api/current?lon=30&lat=30", function(json) {
+			$("#2").html(JSON.stringify(json));
+		});
+		
+		  
+		  
+		});
+	</script>
+</head>
+<body>
+<div id="1">
+
+</div>
+<div id="2">
+
+</div>
+</body>
