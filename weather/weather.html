@@ -20,6 +20,8 @@
 	
 	$.getJSON(url, function(json) {
 			$("#2").html(JSON.stringify(json));
+			console.log(json.name);
+			$("#place").html(json.name + ", " + json.sys.country);
 		});
   });
 }		
@@ -30,10 +32,23 @@
 	</script>
 </head>
 <body>
+<!-- for development -->
 <div id="1">
 
 </div>
 <div id="2">
 
 </div>
+<!-- /for development -->
+<h1>Local Weather</h1>
+<div id="place"> <!-- takes name and country from sys -->
+
+</div>
+<div id="temperature">
+
+</div>
+<div id="icon">
+
+</div>
+
 </body>
