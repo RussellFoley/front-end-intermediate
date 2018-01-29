@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="weather.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
 	$(document).ready(function() {
@@ -8,6 +9,8 @@
 		var longitude;
 		var celcius = true;
 		var tempInCelcius;
+		var toggleMessage = "<br><small>Click to toggle celcius/fahrenheit</small>";
+
 		
 	/**/	function showTemperature() {
 				var string = "";
@@ -18,7 +21,7 @@
 					string = tempInFahrenheit +  "&deg;F";
 				}
 				
-				$("#tempResult").html(string);
+				$("#temperature").html(string + toggleMessage);
 			};
 			
 		$("#temperature").on("click", function(){
@@ -29,27 +32,20 @@
 		
 		if (navigator.geolocation) {
 	navigator.geolocation.getCurrentPosition(function(position) {
-    $("#1").html("latitude: " + position.coords.latitude + "<br>longitude: " + position.coords.longitude);
 	latitude = position.coords.latitude;
 	longitude = position.coords.longitude;
-	console.log(latitude);
-	console.log(longitude);
 	
 	var url = "https://fcc-weather-api.glitch.me//api/current?lon=" + longitude + "&lat=" + latitude;
-	console.log(url);
 	
 		$.getJSON(url, function(json) {
-				$("#2").html(JSON.stringify(json));
-				console.log(json.name);
 				$("#place").html(json.name + ", " + json.sys.country);
+				
 				tempInCelcius = json.main.temp;
-				console.log(typeof (tempInCelcius + "hey"));
 				tempInFahrenheit = tempInCelcius * (9 / 5) + 32;
-				console.log(tempInFahrenheit);
 				var string = tempInFahrenheit.toString() + "&deg;";
-				console.log(string);
 				showTemperature();
-				console.log(json.weather[0].icon);
+				
+				$("#description").html(json.weather[0].description);
 				$("#icon").html('<img src="' + json.weather[0].icon + '">');
 		});
 	});
@@ -61,27 +57,10 @@
 	</script>
 </head>
 <body>
-<!-- for development
-<div id="1">
-
-</div>
-<div id="2">
-
-</div>
-/for development -->
 <h1>Local Weather</h1>
-<div id="place"> <!-- takes name and country from sys -->
-
-</div>
-<div id="temperature">
-	<div id="tempResult">
-	</div>
-	<div>
-		<small>Click to toggle celcius/fahrenheit</small>
-	</div>
-</div>
-<div id="icon">
-
-</div>
+<div id="place"></div>
+<div id="temperature"></div>
+<div id="description"></div>
+<div id="icon"></div>
 
 </body>

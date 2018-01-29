@@ -1,0 +1,15 @@
+body {
+	background-color: grey;
+	color: white;
+	text-align: center;
+	font-family: arial, helvetica, sans-serif;
+	
+}
+
+div {
+	margin: 1em;
+}
+
+#description {
+	text-transform: capitalize;
+}
