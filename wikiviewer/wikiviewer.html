@@ -2,25 +2,34 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="wikiviewer.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 
 <body>
-	<a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" class="btn btn-primary">Random Article</a>
-	<form id="search" class="form-inline">
+	<div class="container">
+		<div class="row text-center" id="buttons">
+			<div class="col-xs-12">
+				<a id="random" href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Click here for a random article</a>
+				<form id="search" class="form-inline">
 
-		<div class="form-group"> 
-			<input id="searchText" type="text" class="form-control">
-		</div>
+					<div class="form-group"> 
+						<input id="searchText" type="text" class="form-control">
+					</div>
+					
+					<div class="form-group"> 
+						<button type="submit" class="btn">Search</button>
+					</div>		
+
+				</form>
+			</div>
+		</div><!-- /buttons -->
+		<div class="row" id="results">
 		
-		<div class="form-group"> 
-			<button type="submit" class="btn btn-primary">Search</button>
-		</div>		
-	
-	</form>
-	<div id="results">
-	
-	</div>
+		</div>
+	</div><!-- /container -->
 	<script>
 	$("#search").submit(function() {
 		var input = $("#searchText").val();
@@ -40,12 +49,31 @@
 			success: function(data) {
 				var string = "";
 				for (i=0;i<numberOfResults;i++){
-					string += "<a class='wikilink' href='" + data[3][i] +"'><h2>" + data[1][i] + "</h2><p>" + data[2][i] + "</p></a>";
+					string += "<a class='wikilink col-xs-12' href='" + data[3][i] +"'><h2>" + data[1][i] + "</h2><p>" + data[2][i] + "</p></a>";
 					}
 				$("#results").html(string);
+				$("#buttons").css({"min-height":0});
 			}
 		});
 		return false;
 	});
-</script>
+	</script>
+	<script type="text/javascript">
+    $("#searchText").autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: "http://en.wikipedia.org/w/api.php",
+                dataType: "jsonp",
+                data: {
+                    'action': "opensearch",
+                    'format': "json",
+                    'search': request.term
+                },
+                success: function(data) {
+                    response(data[1]);
+                }
+            });
+        }
+    });
+  </script>
 </body>

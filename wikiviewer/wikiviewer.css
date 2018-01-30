@@ -1,0 +1,49 @@
+#buttons {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+  margin-top: 1em;
+
+}
+
+button {
+	background-color:green;
+	color: white;
+}
+
+.form-control, .form-control:focus {
+	border-color: green;
+}
+
+#random {
+	margin: 5px;
+}
+
+a, a:hover {
+	display: block;
+	color: green;
+	text-decoration: none;
+}
+
+.wikilink {
+	padding-left: 12px;
+}
+
+.wikilink:hover {
+	border-left:4px solid #273b54;
+	padding-left: 8px;
+}
+
+#search {
+	display: block;
+}
+
+.container {
+	max-width: 80vw;
+}
+
+body {
+	margin-bottom: 4em;
+}
