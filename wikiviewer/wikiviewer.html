@@ -24,6 +24,7 @@
 	$("#search").submit(function() {
 		var input = $("#searchText").val();
 		var url = "https://en.wikipedia.org/w/api.php";
+		var numberOfResults = 10;
 		$.ajax( {
 			url: url,
 			dataType: 'json',
@@ -32,10 +33,15 @@
 				search: input,
 				format: "json",
 				origin: "*",
+				limit: numberOfResults,
 				},
 			type: 'GET',
 			success: function(data) {
-			   $("#results").html(data);
+				var string = "";
+				for (i=0;i<numberOfResults;i++){
+					string += "<a class='wikilink' href='" + data[3][i] +"'><h2>" + data[1][i] + "</h2><p>" + data[2][i] + "</p></a>";
+					}
+				$("#results").html(string);
 			}
 		});
 		return false;
