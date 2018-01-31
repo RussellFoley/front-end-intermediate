@@ -1,11 +1,29 @@
 #buttons {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
-
   display: flex;
   align-items: center;
-  margin-top: 1em;
+  margin: auto;
+}
 
+.form-inline .form-group {
+    display: inline-block;
+}
+
+.ui-menu, .ui-menu-item {
+    background: white;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	max-width: 300px;
+}
+
+.ui-menu{
+	border: 1px solid black;
+}
+
+.ui-menu-item:hover {
+	background-color: blue;
 }
 
 button {
@@ -46,4 +64,8 @@ a, a:hover {
 
 body {
 	margin-bottom: 4em;
+}
+
+li {
+	text-align: left;
 }

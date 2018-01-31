@@ -3,16 +3,19 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="wikiviewer.css">
+<link rel="stylesheet" href="C:/EasyAutocomplete-1.3.5/easy-autocomplete.min.css"> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="C:/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.min.js"></script> 
 
 </head>
 
 <body>
 	<div class="container">
+		<!-- add logo and title -->
 		<div class="row text-center" id="buttons">
 			<div class="col-xs-12">
 				<a id="random" href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Click here for a random article</a>
+				
 				<form id="search" class="form-inline">
 
 					<div class="form-group"> 
@@ -34,7 +37,7 @@
 	$("#search").submit(function() {
 		var input = $("#searchText").val();
 		var url = "https://en.wikipedia.org/w/api.php";
-		var numberOfResults = 10;
+		var limit = 10;
 		$.ajax( {
 			url: url,
 			dataType: 'json',
@@ -43,12 +46,13 @@
 				search: input,
 				format: "json",
 				origin: "*",
-				limit: numberOfResults,
+				limit: limit,
 				},
 			type: 'GET',
 			success: function(data) {
+				
 				var string = "";
-				for (i=0;i<numberOfResults;i++){
+				for (i=0;i<data[1].length;i++){
 					string += "<a class='wikilink col-xs-12' href='" + data[3][i] +"'><h2>" + data[1][i] + "</h2><p>" + data[2][i] + "</p></a>";
 					}
 				$("#results").html(string);
@@ -58,22 +62,24 @@
 		return false;
 	});
 	</script>
-	<script type="text/javascript">
-    $("#searchText").autocomplete({
-        source: function(request, response) {
-            $.ajax({
-                url: "http://en.wikipedia.org/w/api.php",
-                dataType: "jsonp",
-                data: {
-                    'action': "opensearch",
-                    'format': "json",
-                    'search': request.term
-                },
-                success: function(data) {
-                    response(data[1]);
-                }
-            });
-        }
-    });
-  </script>
+
+	<script>
+		var options = {
+			url: function(phrase) { 
+					return "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + phrase + "&format=json&origin=*";    
+				},
+			ajaxSettings: {
+				//gets titles array from wiki json
+				dataFilter: function(data,json) {
+					return JSON.stringify(JSON.parse(data)[1]);				
+				}
+			},
+			list: {
+				onClickEvent: function() {
+					$("#search").submit();
+		}	
+	}
+		};
+		$("#searchText").easyAutocomplete(options);
+	</script>
 </body>
