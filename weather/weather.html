@@ -17,7 +17,7 @@
 				if (celcius) {
 					string = tempInCelcius + "&deg;C";
 				} else {
-					var tempInFahrenheit = tempInCelcius * (9 / 5) + 32;
+					var tempInFahrenheit = (tempInCelcius * (9 / 5) + 32).toFixed(2);
 					string = tempInFahrenheit +  "&deg;F";
 				}
 				
